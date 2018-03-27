@@ -1,12 +1,7 @@
-FROM golang:alpine
+FROM kontena/cli
 
-RUN apk update && \
-    apk add alpine-sdk
+COPY bin/binary-alpine /usr/local/bin/react-static-serve
 
-COPY . $GOPATH/src/gitlab.com/novacloud/wab
-
-WORKDIR $GOPATH/src/gitlab.com/novacloud/wab
-
-RUN make install
+RUN chmod +x /usr/local/bin/react-static-serve
 
 ENTRYPOINT ["react-static-serve"]
